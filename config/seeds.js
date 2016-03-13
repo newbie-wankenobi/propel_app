@@ -1,12 +1,82 @@
 var mongoose = require('./database');
 
 var User = require('../models/user');
+var Classroom = require('../models/classroom');
 
-var users = [
+var users;
+
+/*
+ * Seed the database.
+ */
+
+console.log("Removing users…");
+User.remove({})
+
+.then(function() {
+  process.stdout.write("Creating users: "); // like console.log!
+  return User.create(definedUsers());
+})
+
+.then(function(createdUsers) {
+  users = createdUsers; // save the users list!
+  console.log("Database seeded with " + users.length  + " users.");
+})
+
+.then(function() {
+  console.log("Removing classrooms...");
+  Classroom.remove({});
+})
+
+.then(function() {
+  process.stdout.write("Creating classrooms: ");
+  return Classroom.create(definedClassrooms(users));
+})
+
+.then(function(classrooms) {
+  console.log("Database seeded with " + classrooms.length  + " classrooms.");
+  console.log(classrooms);
+})
+
+// Catch and log any errors along the chain.
+.catch(function(err) {
+  console.log("Error:", err);
+})
+
+// Finish the chain.
+.then(
+  closeMongoConnection, // when the chain is successful…
+  closeMongoConnection  // when the chain has failed…
+);
+
+
+function closeMongoConnection() {
+  mongoose.connection.close(function(err) {
+    if (err) console.log(err);
+    process.exit(0);
+  });
+}
+
+
+function definedUsers() {
+ return [
+  { type: 'instructor',
+    firstName: 'Phil',
+    lastName: 'Hughes',
+    email: 'pj@ga.co',
+    institution: 'General Assembly',
+    location: { name: 'Los Angeles', countryCode: 'USA' } },
+
   { type: 'instructor',
     firstName: 'Ezra',
     lastName: 'Raez',
     email: 'ezra.raez@generalassemb.ly',
+    institution: 'General Assembly',
+    location: { name: 'Los Angeles', countryCode: 'USA' } },
+
+  { type: 'instructor',
+    firstName: 'Jim',
+    lastName: 'Clark',
+    email: 'jim.clark@generalassemb.ly',
     institution: 'General Assembly',
     location: { name: 'Los Angeles', countryCode: 'USA' } },
 
@@ -32,13 +102,6 @@ var users = [
     location: { name: 'Los Angeles', countryCode: 'USA' } },
 
   { type: 'instructor',
-    firstName: 'Jim',
-    lastName: 'Clark',
-    email: 'jim.clark@generalassemb.ly',
-    institution: 'General Assembly',
-    location: { name: 'Los Angeles', countryCode: 'USA' } },
-
-  { type: 'instructor',
     firstName: 'Fernando',
     lastName: 'Orozco',
     email: 'forozco2085@gmail.com',
@@ -49,13 +112,6 @@ var users = [
     firstName: 'Rob',
     lastName: 'Gonnella',
     email: 'robgonnella@gmail.com',
-    institution: 'General Assembly',
-    location: { name: 'Los Angeles', countryCode: 'USA' } },
-
-  { type: 'instructor',
-    firstName: 'Phil',
-    lastName: 'Hughes',
-    email: 'pj@ga.co',
     institution: 'General Assembly',
     location: { name: 'Los Angeles', countryCode: 'USA' } },
 
@@ -242,20 +298,17 @@ var users = [
     email: 'keithtkto@gmail.com',
     institution: 'General Assembly',
     location: { name: 'Los Angeles', countryCode: 'USA' } }
-];
+  ];
+}
 
-User.remove({}, function(err) {
-  if (err) console.log(err);
-  User.create(users, function(err, users) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Database seeded with " + users.length  + " users.")
-      console.log(users);
-      mongoose.connection.close(function(err) {
-        if (err) console.log(err);
-        process.exit(0);
-      });
-    }
-  });
-});
+function definedClassrooms() {
+  return [
+    {
+      name: 'WDI-DTLA-8',
+      creator: users[0],
+      admins: [users[0], users[1], users[2]],
+      students: users.slice(12),
+      professionals: [users[9], users[10], users[11]],
+    },
+  ];
+}
