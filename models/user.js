@@ -3,11 +3,11 @@ var mongoose = require('mongoose'),
 
 var userSchema = new mongoose.Schema({
   type:                     {type: String, required: true, enum: ['student', 'instructor', 'professional'], default: 'student'},
-  linkedInId:               {type: String, required: true, default: null},
-  linkedInPublicProfileUrl: {type: String, required: true, default: null},
+  linkedInId:               {type: String, required: true, default: 'LINKEDIN_ID'},
+  linkedInPublicProfileUrl: {type: String, required: true, default: 'LINKEDIN_PROFILE_URL'},
   firstName:                {type: String, required: true},
   lastName:                 {type: String, required: true},
-  emailAddress:             {type: String, required: true},
+  email:                    {type: String, required: true},
   institution:              {type: String, required: true},
   location:                 {name: String, countryCode: String}
 });
