@@ -12,6 +12,13 @@ var userSchema = new mongoose.Schema({
   location:                 {name: String, countryCode: String}
 });
 
+// creating an instance method for the userSchema
+// http://mongoosejs.com/docs/guide.html#methods
+userSchema.methods.isStudent = function() {
+  if (this.type === 'student') return true;
+  return false;
+};
+
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;
