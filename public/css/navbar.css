@@ -18,8 +18,13 @@
   max-width:21px;
   display: inline;
   height: auto;
+<<<<<<< HEAD
   top:-1.99px;
   left: -29.9px;
+=======
+  top:-1.8px;
+  left: -29px;
+>>>>>>> 34f7224748f57854d5b98b117603dfac5a4f0ed2
   position:relative;
 
 }
