@@ -1,17 +1,25 @@
 var mongoose = require('mongoose'),
     debug    = require('debug')('app:models');
 
+// var tagSchema = new mongoose.Schema({
+//   tags: [String]
+// });
+
+// var upvoteSchema = new mongoose.Schema({
+//   voter:    {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+// });
+
 var commentSchema = new mongoose.Schema({
   author:    {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   body:      {type: String, required: true},
   createdAt: {type: Date, default: Date.now},
-  // comments: [this]
 });
 
 var answerSchema = new mongoose.Schema({
   author:    {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   body:      {type: String, required: true},
   createdAt: {type: Date, default: Date.now},
+  upvotes:   [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   comments:  [commentSchema]
 });
 
@@ -19,10 +27,13 @@ var questionSchema = new mongoose.Schema({
   author:    {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   body:      {type: String, required: true},
   createdAt: {type: Date, default: Date.now},
-  answers: [answerSchema]
+  upvotes:   [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+  tags:      [String],
+  answers:   [answerSchema]
 });
 
 var classroomSchema = new mongoose.Schema({
+  assignId:      {type: String, required: true, default: 'ASSIGNID'},
   type:          {type: String, required: true, enum: ['course', 'subject-thread', 'industry-thread'], default: 'course'},
   name:          {type: String, required: true},
   createdAt:     {type: Date, default: Date.now},

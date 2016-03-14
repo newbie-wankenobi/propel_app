@@ -1,4 +1,5 @@
 var mongoose = require('./database');
+var debug    = require('debug')('app:models');
 
 var User = require('../models/user');
 var Classroom = require('../models/classroom');
@@ -35,6 +36,7 @@ User.remove({})
 .then(function(classrooms) {
   console.log("Database seeded with " + classrooms.length  + " classrooms.");
   console.log(classrooms);
+  debug();
 })
 
 // Catch and log any errors along the chain.
