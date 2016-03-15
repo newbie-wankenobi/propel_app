@@ -30,7 +30,9 @@ var classroomSchema = new mongoose.Schema({
   admins:        [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   students:      [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   professionals: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
-  questions:     [questionSchema]
+  questions:     [questionSchema],
+  description:   {type: String, required: true},
+  classCode:  {type: String, required: true}
   // schedule:   {days: [String], startDate: Date, endDate: Date, startTime: Number, endTime: Number},
   // syllabus:   String,
   // lessons:    [String],

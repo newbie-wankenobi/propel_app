@@ -19,7 +19,7 @@ function newThreadData() {
   return {
     type: $('#new-classroom-type').val(),
     name: $('#new-classroom-name').val(),
-    creator: user._id,
+    // creator: user._id,
     admins: $('#new-classroom-admins').val(),
     description: $('#new-classroom-description').val()
   }
