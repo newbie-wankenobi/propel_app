@@ -4,37 +4,39 @@ var express = require('express'),
 
 // Require controllers.
 var pagesController = require('../controllers/pages');
-var usersController = require('../controllers/users');
 var apiController   = require('../controllers/api');
 
-
-// main page after log in
-router.get('/welcome', pagesController.welcome);
-
-// root path:
-router.get('/', function(req, res){
-  res.render('index', {user: req.user});
+// STATIC PAGES (SERVER-SIDE RENDERING) ********************************
+router.get('/', function(req, res) {
+  res.redirect('/welcome');
 });
+router.get('/welcome', pagesController.welcome);
+router.get('/team',    pagesController.team);
 
+// AUTH ROUTES (SIGN IN, LOG IN, LOG OUT) ******************************
+router.get('/auth/linkedin', passport.authenticate('linkedin',
+  function(req, res) {
 
-router.get('/auth/linkedin',
-  passport.authenticate('linkedin',
-    function(req,res){}
-  ));
+  })
+);
 
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/',
+  successRedirect: '/classroom.html',
   failureRedirect: '/'
 }));
 
-router.get('/logout', function(req,res){
+router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
 
+// API ROUTES **********************************************************
 
-//api routes
-// router.get('api/classrooms', apiController.classroomIndex);
+// Users Resource
+router.get('/api/users',       apiController.usersIndex);
+
+// Classrooms Resource
+router.get( '/api/classrooms', apiController.classroomIndex);
 router.post('/api/classrooms', apiController.classroomCreate);
 
 module.exports = router;

@@ -30,8 +30,8 @@ var questionSchema = new mongoose.Schema({
 });
 
 var classroomSchema = new mongoose.Schema({
-  signUpCode:    {type: String, required: true, default: 'ASSIGNID'}, // TODO: check signUpCode is unique before assigning
-  type:          {type: String, required: true, enum: ['course', 'subject-thread', 'industry-thread'], default: 'course'},
+  signUpCode:    {type: String, required: true}, // TODO: check signUpCode is unique before assigning
+  type:          {type: String, enum: ['course', 'subject-thread', 'industry-thread'], default: 'course'},
   name:          {type: String, required: true},
   createdAt:     {type: Date, default: Date.now},
   creator:       {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
@@ -39,7 +39,7 @@ var classroomSchema = new mongoose.Schema({
   students:      [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}], // TODO: check if unique before assigning
   professionals: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}], // TODO: check if unique before assigning
   questions:     [questionSchema],
-  description:   {type: String, required: true, default: 'Classroom description'}
+  description:   {type: String, default: 'Classroom description'}
   // schedule:   {days: [String], startDate: Date, endDate: Date, startTime: Number, endTime: Number},
   // syllabus:   String,
   // lessons:    [String],
