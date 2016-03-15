@@ -36,7 +36,7 @@ router.get('/logout', function(req, res) {
 router.get('/api/users',       apiController.usersIndex);
 
 // Classrooms Resource
-router.get('/api/classrooms',  apiController.classroomIndex);
+router.get( '/api/classrooms', apiController.classroomIndex);
 router.post('/api/classrooms', apiController.classroomCreate);
 
 module.exports = router;
