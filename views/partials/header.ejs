@@ -1,5 +1,22 @@
-<header>
-  <h1><%= title %></h1>
-  <h2><%= subHeading %></h2>
-  <hr>
+<header class="landingnav" id="wholedangnavbar">
+<!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="wholedangnavbar">
+    <div class="container" id="propellogo">
+      <img class="navbar-brand" src="assets/images/navbarlogo.png" id="propellogo">
+
+      <div class="navbar-header" id="wholedangnavbar">
+
+      </div>
+      <div id="navbar3" class="navbar-collapse collapse" id="wholedangnavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="<%= page === "welcome" ? "active" : "" %>"><a href="/">About</a></li>
+          <li class="<%= page === "team" ? "active" : "" %>"><a href="/team">Team</a></li>
+          <li class="<%= page === "login" ? "active" : "" %>"><a href="#">Sign up | Log</a></li>
+          <li><a href="#"><img src="assets/images/linkedinlogo.png" id="linkedinlogo"></a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+  </nav>
 </header>

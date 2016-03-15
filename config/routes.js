@@ -6,19 +6,19 @@ var express = require('express'),
 var pagesController = require('../controllers/pages');
 var apiController   = require('../controllers/api');
 
-// main page after log in
+// STATIC PAGES (SERVER-SIDE RENDERING) ********************************
+router.get('/', function(req, res) {
+  res.redirect('/welcome');
+});
 router.get('/welcome', pagesController.welcome);
 router.get('/test', pagesController.test);
 
-// root path:
-router.get('/', function(req, res){
-  res.render('index', {user: req.user});
-});
+// AUTH ROUTES (SIGN IN, LOG IN, LOG OUT) ******************************
+router.get('/auth/linkedin', passport.authenticate('linkedin',
+  function(req, res) {
 
-router.get('/auth/linkedin',
-  passport.authenticate('linkedin',
-    function(req, res) {}
-  ));
+  })
+);
 
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
   successRedirect: '/',
@@ -30,8 +30,7 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-
-// API ROUTES
+// API ROUTES **********************************************************
 
 // Users Resource
 router.get('/api/users',       apiController.usersIndex);
