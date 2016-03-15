@@ -1,12 +1,6 @@
 
 console.log("spike loaded")
 
-
-
-
-
-var user = {_id: "12345"};
-
 //event listener for classroom submit
 $('#new-classroom-submit').on('click', function(evt) {
   evt.preventDefault();
@@ -36,7 +30,7 @@ function createClassroom(){
   })
 }
 
-// .then()
+
 
 
 
