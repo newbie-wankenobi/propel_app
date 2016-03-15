@@ -1,7 +1,9 @@
-var welcome = function(req, res, next) {
+var Classroom = require('../models/classroom');
+
+function welcome(req, res, next) {
   res.render('pages/welcome');
 };
 
 module.exports = {
-  welcome: welcome
+  welcome: welcome,
 };
