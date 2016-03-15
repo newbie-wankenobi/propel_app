@@ -1,4 +1,10 @@
-// Node.js repl spiking
+// Export objects below for spiking data model with Node.js repl in terminal:
+// `$ node`
+// `$ var spike = require('./models/modelsSpike.js');`
+module.exports = {
+  getUsers: function() {return users},
+  getClassrooms: function() {return classrooms}
+};
 
 // require mongoose
 var mongoose = require('mongoose');
@@ -18,6 +24,7 @@ User.find({})
 .then(function(foundUsers) {
   users = foundUsers;
   users.forEach(user => console.log(user));
+  // return users;
 })
 
 .then(function() {
@@ -26,6 +33,7 @@ User.find({})
     .then(function(foundClassrooms) {
       classrooms = foundClassrooms;
       classrooms.forEach(classroom => console.log(classroom));
+      // return classrooms;
     })
 
     .catch(function(err) {
@@ -40,11 +48,6 @@ User.find({})
 function closeMongoConnection() {
   mongoose.connection.close(function(err) {
     if (err) console.log(err);
-    // debug in Terminal, Node.js repl:
-      // node debug spike.js
-      // cont
-      // repl
-    debugger; // Node.js debug breakpoint
-    // process.exit(0);
+    return classrooms, users;
   });
 }
