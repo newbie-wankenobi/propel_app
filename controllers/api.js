@@ -1,11 +1,23 @@
 var Classroom = require('../models/classroom');
+var User      = require('../models/user');
 
 module.exports = {
   classroomCreate: classroomCreate,
-  classroomIndex:  classroomIndex
+  classroomIndex:  classroomIndex,
+  usersIndex:      usersIndex
 };
 
 var code = "";
+
+function usersIndex(req, res, next) {
+  User.find({}, function(err, users) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(users);
+    }
+  });
+}
 
 function classroomIndex(req, res, next) {
   Classroom.find({}, function(err, classrooms) {
@@ -57,7 +69,6 @@ function classroomCreate(req, res, next) {
       }
     })
   });
-
 };
 
 
