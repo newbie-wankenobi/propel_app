@@ -6,14 +6,15 @@
 <body>
   <%- include('../partials/header', {subHeading: 'Welcome'}) %>
 
-  <main>
-    <ul>
-      <li><a href="/users">Visit the user list.</a></li>
-    </ul>
-  </main>
+  <div class="container">
+    <main>
+      <ul>
+        <li><a href="/users">Visit the user list.</a></li>
+      </ul>
+    </main>
 
-  <section id="questionList"></section>
-
+    <section id="questionList"></section>
+  </div>
   <%- include('../partials/scripts') %>
 </body>
 </html>
