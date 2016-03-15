@@ -1,10 +1,11 @@
 var mongoose = require('./database');
-var debug    = require('debug')('app:models');
 
 var User = require('../models/user');
 var Classroom = require('../models/classroom');
 
+// Define users on the global scope to share between promises
 var users;
+var classrooms;
 
 /*
  * Seed the database.
@@ -25,30 +26,27 @@ User.remove({})
 
 .then(function() {
   console.log("Removing classrooms...");
-  Classroom.remove({});
-})
+  Classroom.remove({})
+  // continue chaining after mongodb remove method on second model
+  .then(function() {
+    process.stdout.write("Creating classrooms: ");
+    return Classroom.create(definedClassrooms(users));
+  })
 
-.then(function() {
-  process.stdout.write("Creating classrooms: ");
-  return Classroom.create(definedClassrooms(users));
-})
+  .then(function(createdClassrooms) {
+    classrooms = createdClassrooms;
+    console.log("Database seeded with " + createdClassrooms.length  + " createdClassrooms.");
+    console.log(classrooms);
+  })
 
-.then(function(classrooms) {
-  console.log("Database seeded with " + classrooms.length  + " classrooms.");
-  console.log(classrooms);
-  debug();
-})
-
-// Catch and log any errors along the chain.
-.catch(function(err) {
-  console.log("Error:", err);
-})
-
-// Finish the chain.
-.then(
-  closeMongoConnection, // when the chain is successful…
-  closeMongoConnection  // when the chain has failed…
-);
+  .catch(function(err) {
+    console.log("Error:", err);
+  })
+  .then(
+    closeMongoConnection, // when the chain is successful…
+    closeMongoConnection  // when the chain has failed…
+  )
+});
 
 
 function closeMongoConnection() {
@@ -57,7 +55,6 @@ function closeMongoConnection() {
     process.exit(0);
   });
 }
-
 
 function definedUsers() {
  return [
@@ -303,7 +300,7 @@ function definedUsers() {
   ];
 }
 
-function definedClassrooms() {
+function definedClassrooms(users) {
   return [
     {
       name: 'WDI-DTLA-8',
