@@ -1,17 +1,27 @@
 var Classroom = require('../models/classroom');
 
 module.exports = {
-  classroomCreate: classroomCreate
+  classroomCreate: classroomCreate,
+  classroomIndex:  classroomIndex
 };
 
 var code = "";
+
+function classroomIndex(req, res, next) {
+  Classroom.find({}, function(err, classrooms) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(classrooms);
+    }
+  });
+}
 
 function classroomCreate(req, res, next) {
 
   console.log("Create route cool");
   console.log(req.body);
   console.log("end body");
-
 
   var code = "";
   //supply new classCode to newclassroom

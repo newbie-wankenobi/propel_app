@@ -1,9 +1,14 @@
 var Classroom = require('../models/classroom');
 
+module.exports = {
+  welcome: welcome,
+  test: test
+};
+
 function welcome(req, res, next) {
   res.render('pages/welcome');
 };
 
-module.exports = {
-  welcome: welcome,
-};
+function test(req, res, next) {
+  res.render('pages/test');
+}
