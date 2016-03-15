@@ -5,6 +5,7 @@ var express = require('express'),
 // Require controllers.
 var pagesController = require('../controllers/pages');
 var usersController = require('../controllers/users');
+var classroomsController = require('../controllers/classrooms');
 var apiController   = require('../controllers/api');
 
 
@@ -19,7 +20,7 @@ router.get('/', function(req, res){
 
 router.get('/auth/linkedin',
   passport.authenticate('linkedin',
-    function(req,res){}
+    function(req, res) {}
   ));
 
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
@@ -27,10 +28,20 @@ router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
   failureRedirect: '/'
 }));
 
-router.get('/logout', function(req,res){
+router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
+
+// user routes
+
+// index
+router.get('/users', usersController.index);
+
+// classroom routes
+
+// index
+router.get('/classrooms', classroomsController.index)
 
 
 //api routes
