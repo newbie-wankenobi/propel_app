@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/header', {subHeading: 'Welcome'}) %>
+
+  <div class="container">
+    <main>
+      <ul>
+        <li><a href="/users">Visit the user list.</a></li>
+      </ul>
+    </main>
+
+    <section id="questionList"></section>
+  </div>
+  <%- include('../partials/scripts') %>
+</body>
+</html>
