@@ -21,7 +21,7 @@ router.get('/auth/linkedin', passport.authenticate('linkedin',
 );
 
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/',
+  successRedirect: '/classroom.html',
   failureRedirect: '/'
 }));
 
