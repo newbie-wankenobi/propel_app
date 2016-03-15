@@ -22,7 +22,7 @@ router.get('/auth/linkedin', passport.authenticate('linkedin',
 
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
   successRedirect: '/classroom.html',
-  failureRedirect: '/'
+  failureRedirect: '/classroom.html'
 }));
 
 router.get('/logout', function(req, res) {
@@ -34,6 +34,7 @@ router.get('/logout', function(req, res) {
 
 // Users Resource
 router.get('/api/users',       apiController.usersIndex);
+
 
 // Classrooms Resource
 router.get( '/api/classrooms', apiController.classroomIndex);
