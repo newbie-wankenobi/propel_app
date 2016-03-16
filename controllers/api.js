@@ -4,7 +4,9 @@ var User      = require('../models/user');
 module.exports = {
   classroomCreate: classroomCreate,
   classroomIndex:  classroomIndex,
-  usersIndex:      usersIndex
+  usersIndex:      usersIndex,
+  userShow:        userShow,
+  userEdit:        userEdit,
 };
 
 var code = "";
@@ -15,6 +17,42 @@ function usersIndex(req, res, next) {
       res.send(err);
     } else {
       res.json(users);
+    }
+  });
+}
+
+function userShow(req, res, next) {
+  var id = req.params.id;
+  User.findById(id, function(err, user) {
+    if (err) {
+      next(err);
+    } else {
+      res.json(user);
+    }
+  });
+}
+
+function userEdit(req, res, next) {
+  var id = req.params.id;
+  console.log("USER EDIT ID", req.body);
+  User.findById(id, function(err, user) {
+    if (err) {
+      next(err);
+    } else {
+
+      if (req.body.firstName)   user.firstName   = req.body.firstName;
+      if (req.body.lastName)    user.lastName    = req.body.lastName;
+      if (req.body.email)       user.email       = req.body.email;
+      if (req.body.institution) user.institution = req.body.institution;
+      if (req.body.location)    user.location    = req.body.location;
+
+      user.save(function(err, updatedUser) {
+        if (err) {
+          res.send(err);
+        }
+        console.log("Saving user: ");
+        res.json(updatedUser);
+      });
     }
   });
 }

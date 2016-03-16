@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
 });
 router.get('/welcome', pagesController.welcome);
 router.get('/team',    pagesController.team);
+router.get('/test',    pagesController.test);
 
 // AUTH ROUTES (SIGN IN, LOG IN, LOG OUT) ******************************
 router.get('/auth/linkedin', passport.authenticate('linkedin',
@@ -33,7 +34,9 @@ router.get('/logout', function(req, res) {
 // API ROUTES **********************************************************
 
 // Users Resource
-router.get('/api/users',       apiController.usersIndex);
+router.get('/api/users',          apiController.usersIndex);
+router.get('/api/users/:id',      apiController.userShow);
+router.put('/api/users/:id',      apiController.userEdit);
 
 // Classrooms Resource
 router.get( '/api/classrooms', apiController.classroomIndex);
