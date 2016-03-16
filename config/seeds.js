@@ -328,20 +328,40 @@ function definedClassrooms(users) {
       questions: [
                   {
                     author: users[0],
-                    body: "body of question 1"
+                    body: "body of question 1",
+                    title: "testing 1"
                   },
                      {
                     author: users[1],
-                    body: "body of question 2"
+                    body: "body of question 2",
+                    title: "testing 2"
                   },
                      {
                     author: users[2],
-                    body: "body of question 3"
+                    body: "body of question 3",
+                    title: "testing 3"
                   }
                  ]
     },
   ];
 }
+
+
+// {
+//   author: users[0],
+//   body: "body of question 1",
+//   title: "testing 1"
+// },
+//    {
+//   author: users[1],
+//   body: "body of question 2",
+//   title: "testing 2"
+// },
+//    {
+//   author: users[2],
+//   body: "body of question 3",
+//   title: "testing 3"
+// }
 
 
 // function definedQuestions(users) {
