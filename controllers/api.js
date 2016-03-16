@@ -9,7 +9,16 @@ module.exports = {
   userEdit:        userEdit,
 };
 
-var code = "";
+//function for classroomIndex
+function classroomIndex(req, res, next) {
+  Classroom.find({}, function(err, classrooms){
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(classrooms)
+    }
+  });
+}
 
 function usersIndex(req, res, next) {
   User.find({}, function(err, users) {
@@ -45,6 +54,7 @@ function userEdit(req, res, next) {
       if (req.body.email)       user.email       = req.body.email;
       if (req.body.institution) user.institution = req.body.institution;
       if (req.body.location)    user.location    = req.body.location;
+      user.newUser = false;
 
       user.save(function(err, updatedUser) {
         if (err) {

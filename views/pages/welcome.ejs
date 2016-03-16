@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%- include('../partials/head') %>
+  <$- include('../partials/head') $>
 </head>
 <body>
-  <%- include('../partials/header') %>
+  <$- include('../partials/header', {page: "welcome"}) $>
   <div class="container">
     <div class="intro-header">
         <div class="row">
@@ -92,7 +92,7 @@
   <!-- container -->
   </div>
 
-  <%- include('../partials/scripts') %>
+  <$- include('../partials/scripts') $>
 
   <script>
     $('#propellogo').addClass('slideInLeft');
