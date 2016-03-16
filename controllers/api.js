@@ -45,6 +45,7 @@ function userEdit(req, res, next) {
       if (req.body.email)       user.email       = req.body.email;
       if (req.body.institution) user.institution = req.body.institution;
       if (req.body.location)    user.location    = req.body.location;
+      user.newUser = false;
 
       user.save(function(err, updatedUser) {
         if (err) {

@@ -14,8 +14,9 @@ router.get('/', function(req, res) {
 });
 router.get('/welcome', pagesController.welcome);
 router.get('/team',    pagesController.team);
-router.get('/first-time-login', pagesController.firstTimeLogin);
 router.get('/test',    pagesController.test);
+router.get('/first_time_login',    pagesController.loginTest);
+router.get('/edituser',    pagesController.edituser);
 
 
 // AUTH ROUTES (SIGN IN, LOG IN, LOG OUT) ******************************

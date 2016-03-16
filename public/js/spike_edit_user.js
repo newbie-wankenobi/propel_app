@@ -22,7 +22,7 @@ $(function() {
       lastName:    $("#edit-ln").val(),
       email:       $("#edit-email").val(),
       institution: $("#edit-institution").val(),
-      location:    $("#edit-location").val()
+      location:    $("#edit-location").val(),
     };
 
     editUser(user);

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%- include('../partials/head') %>
+  <$- include('../partials/head') $>
 </head>
 <body>
-  <%- include('../partials/header', { subHeading: user.firstName + "'s Profile" }) %>
+  <$- include('../partials/header', { subHeading: user.firstName + "'s Profile" }) $>
 
   <main>
-    <p>Name:   <%= user.firstName %></p>
+    <p>Name:   <$= user.firstName $></p>
     <p><a href="/users">Back to the user list.</a></p>
   </main>
 
-  <%- include('../partials/scripts') %>
+  <$- include('../partials/scripts') $>
 </body>
 </html>
