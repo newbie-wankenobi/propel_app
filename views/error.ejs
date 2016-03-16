@@ -4,14 +4,10 @@
   <$- include('partials/head') $>
 </head>
 <body>
-  <$- include('partials/header', {subHeading: 'Error', page: "welcome"}) $>
-
   <main>
     <h3><$= message $></h3>
     <h4><$= error.status $></h4>
     <pre><$= error.stack $></pre>
   </main>
-
-  <$- include('partials/scripts') $>
 </body>
 </html>
