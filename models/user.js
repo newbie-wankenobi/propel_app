@@ -14,7 +14,8 @@ var userSchema = new mongoose.Schema({
   lastName:                 {type: String, required: true},
   email:                    {type: String, required: true},
   institution:              {type: String},
-  location:                 String
+  location:                 String,
+  classrooms:               [{type: mongoose.Schema.Types.ObjectId, ref: 'Classroom'}]
 });
 
 // creating an instance method for the userSchema

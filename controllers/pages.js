@@ -7,7 +7,7 @@ module.exports = {
   edituser: edituser,
   loginTest: loginTest,
   classroom: classroom
-};
+
 
 function welcome(req, res, next) {
   res.render('pages/welcome', {user: req.user, page: "welcome"});

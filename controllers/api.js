@@ -9,7 +9,16 @@ module.exports = {
   userEdit:        userEdit,
 };
 
-var code = "";
+//function for classroomIndex
+function classroomIndex(req, res, next) {
+  Classroom.find({}, function(err, classrooms){
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(classrooms)
+    }
+  });
+}
 
 function usersIndex(req, res, next) {
   User.find({}, function(err, users) {

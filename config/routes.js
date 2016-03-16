@@ -19,6 +19,7 @@ router.get('/first_time_login',    pagesController.loginTest);
 router.get('/edituser',    pagesController.edituser);
 router.get('/classroom', pagesController.classroom);
 
+router.get('/test', pagesController.test);
 
 // AUTH ROUTES (SIGN IN, LOG IN, LOG OUT) ******************************
 router.get('/auth/linkedin', passport.authenticate('linkedin',
@@ -43,6 +44,7 @@ router.get('/logout', function(req, res) {
 router.get('/api/users',          apiController.usersIndex);
 router.get('/api/users/:id',      apiController.userShow);
 router.put('/api/users/:id',      apiController.userEdit);
+
 
 // Classrooms Resource
 router.get( '/api/classrooms', apiController.classroomIndex);

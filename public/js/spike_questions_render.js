@@ -5,14 +5,18 @@ console.log('spike_questions_render loaded');
 
 var $questionListEl; //<section> of where the question get posted
 var renderQuestions = _.template(`
-      <article id="<%= _id %>" class="">
-        <a href="/users/<%= author %>" ><h3> title </h3></a>
-        <p><%= body %></p>
+      <article id="<$= _id $>" class="">
+        <a href="/users/<$= _id $>"><h3><$= name $></h3></a>
+        // <a href="/users/<$= creator._id $>"><h3><$= creator.name $></h3></a>
+        <p><$= description $></p>
         <span>
-          Created at <% createdAt %>, by
-           user.fullName
+          Created at <$ createdAt $>, by
+          <$= creator.displayName() $>
         </span>
-
+    // <!-- <br> -->
+    // <!-- <button>upvote</button> VoteCount <button>downvote</button> -->
+    // <!-- <br> -->
+    // <!-- <button>delete this question (only delete user own question)</button> -->
       </article>
     `);
 
@@ -20,20 +24,19 @@ var renderQuestions = _.template(`
 function postQuestions(question){
   var questionComponent  = renderQuestions(question);
   var $questionComponent = $(questionComponent);
-      $questionListEl      = $('#questionList');
+      $questionListEl    = $('#questionList');
 
       $questionListEl.append($questionComponent);
 }
 
  //$questionList = <section> of where the question get posted}
 
-function indexingQuestions() {
-  var id = "56e89f549e27cd2b3c135ef5"
+function indexingClassrooms() {
   $.ajax({
     method: "GET",
-    url: "api/classrooms/" + id
-  }).then(function(classroom){
-    console.log("RENDERING Q", classroom);
+    url: "api/classrooms"
+  }).then(function(classrooms){
+    console.log("RENDERING Q", questions);
 
     classroom.questions.forEach(function(question){
       postQuestions(question);

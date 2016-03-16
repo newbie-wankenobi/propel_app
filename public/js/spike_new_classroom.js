@@ -1,5 +1,8 @@
 
-console.log("spike loaded")
+console.log("spike NCR loaded");
+"use strict";
+
+
 
 //event listener for classroom submit
 $('#new-classroom-submit').on('click', function(evt) {
@@ -29,6 +32,36 @@ function createClassroom(){
     data: newThreadData()
   })
 }
+
+//Rendering classes on to classroom page
+var $classroomInfoTemp = _.template(`
+  <article id="<%= _id %>">
+    <h3><%= name %></h3>
+    <p><%= description %></p>
+    <p>Created at <%= createdAt %></p>
+  </article>
+  `);
+//getting all the classroom
+function renderClasses() {
+  $.ajax({
+    method: 'GET',
+    url: '/api/classrooms'
+  }).then(function(classrooms){
+    "use strict";
+    console.log(classrooms);
+    classrooms.forEach(function(classroom){
+      var $classTemp = $classroomInfoTemp(classroom);
+      $('#classroom-list').append($classTemp);
+    });
+  });
+}
+
+$( document ).ready( function() {
+  renderClasses();
+  }
+);
+
+
 
 
 
