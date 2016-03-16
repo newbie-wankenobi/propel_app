@@ -35,12 +35,15 @@ function loginTest(req, res, next) {
 // AJAX calls to API and use returned JSON to render
 // with jQ template strings and CSS selectors
 function classroom(req, res, next) {
-  switch (req.user.newUser) {
-    case true:
-      res.render('pages/classroom_new_user', {user: req.user, page: ""});
-      break;
-    case false:
-      res.render('pages/classroom', {user: req.user, page: ""});
-      break;
-  }
+  res.render('pages/classroom', {user: req.user, page: ""});
 }
+// function classroom(req, res, next) {
+//   switch (req.user.newUser) {
+//     case true:
+//       res.render('pages/classroom_new_user', {user: req.user, page: ""});
+//       break;
+//     case false:
+//       res.render('pages/classroom', {user: req.user, page: ""});
+//       break;
+//   }
+// }
