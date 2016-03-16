@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="stylesheet" href="">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        Welcome, <$= user.firstName $>
+      </div>
+    </div>
+  </div>
+
+  <div class="linked-in-prefilled-info">
+  </div>
+
+    <$= if (user.type === "instructor") { $>
+  <div class= "new-classroom-form">
+    <form action="submit" id="new-classroom-form">
+      Type: <select id="new-classroom-type">
+              <option value="course">courses</option>
+              <option value="subject-thread">subject</option>
+              <option value="industry-thread">industry</option>
+            </select> <br>
+      Name: <input type="text" name="name" placeholder="Sociology 101" id="new-classroom-name"><br>
+      Add Admin: <input type="text" name="admins" placeholder="" id="new-classroom-admins"><br>
+      Description: <textarea type="text" placeholder="Please enter a description about your class..." id="new-classroom-description"></textarea>
+      <input type="submit" id="new-classroom-submit">
+    </form>
+  </div>
+   <$= } else { $>
+      <div class="input-signup-code">
+        <p>Please enter your signup code:</p>
+        <form action="submit" id="new-classroom-form"> <br>
+           <p> Code: <input type="text" placeholder="012345" id="signup-code"><br></p>
+        <input type="submit" id="new-classroom-form">
+        </form>
+      </div>
+   <$ } $>
+
+
+
+  <button type="">
+  </button>
+
+</body>
+</html>
+
+var classroomSchema = new mongoose.Schema({
+  signUpCode:    {type: String, required: true}, // TODO: check signUpCode is unique before assigning
+  type:          {type: String, enum: ['course', 'subject-thread', 'industry-thread'], default: 'course'},
+  name:          {type: String, required: true},
+  createdAt:     {type: Date, default: Date.now},
+  creator:       {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  admins:        [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}], // TODO: check if unique before assigning
+  students:      [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}], // TODO: check if unique before assigning
+  professionals: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}], // TODO: check if unique before assigning
+  questions:     [questionSchema],
+  description:   {type: String, default: 'Classroom description'}
+  // schedule:   {days: [String], startDate: Date, endDate: Date, startTime: Number, endTime: Number},
+  // syllabus:   String,
+  // lessons:    [String],
+});

@@ -2,7 +2,9 @@ var Classroom = require('../models/classroom');
 
 module.exports = {
   welcome: welcome,
-  team:    team
+  team:    team,
+  firstTimeLogin: firstTimeLogin,
+
 };
 
 function welcome(req, res, next) {
@@ -11,4 +13,8 @@ function welcome(req, res, next) {
 
 function team(req, res, next) {
   res.render('pages/team', {user: req.user, page: "team"});
+}
+
+function firstTimeLogin(req,res,next) {
+  res.render('pages/first-time-login', {user: req.user, page: "first-time-login"});
 }
