@@ -44,6 +44,6 @@ router.get( '/api/classrooms', apiController.classroomIndex);
 router.post('/api/classrooms', apiController.classroomCreate);
 
 // Question Resource
-router.get('/api/classrooms/:id/questions', questionController.questionIndex);
+router.get('/api/classrooms/:id/', questionController.questionIndex);
 
 module.exports = router;

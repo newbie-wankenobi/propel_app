@@ -8,13 +8,15 @@ module.exports = {
 };
 
 
-function questionIndex(res, req, next){
-  Classroom.findById(id, function(classroom){
+function questionIndex(req, res, next){
+  console.log(req.params.id);
+  Classroom.findById(req.params.id, function(err, classroom){
     if (err) {
       res.send(err);
     } else {
-      var questions = classroom.questions
-      res.json(questions);
+      console.log(classroom);
+      // var questions = classroom.questions
+      res.json(classroom);
     }
   });
 }
