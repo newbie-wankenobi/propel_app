@@ -39,6 +39,22 @@ User.remove({})
     console.log(classrooms);
   })
 
+  //Creating questions
+  // .then(function() {
+  //   process.stdout.write("Creating classrooms: ");
+  //   Classroom.find({}, function(classrooms){
+  //     var classroom = classrooms[0];
+  //     classroom.questions = definedQuestions(users);
+  //     classroom.save();
+  //   });
+  // })
+
+  // .then(function(createdQuestions) {
+  //   questions = createdQuestions;
+  //   console.log("Database seeded with " + "3"  + " createdQuestions.");
+  //   console.log(questions);
+  // })
+
   .catch(function(err) {
     console.log("Error:", err);
   })
@@ -308,6 +324,42 @@ function definedClassrooms(users) {
       admins: [users[0], users[1], users[2]],
       students: users.slice(12),
       professionals: [users[9], users[10], users[11]],
+      signUpCode: "123456",
+      questions: [
+                  {
+                    author: users[0],
+                    body: "body of question 1"
+                  },
+                     {
+                    author: users[1],
+                    body: "body of question 2"
+                  },
+                     {
+                    author: users[2],
+                    body: "body of question 3"
+                  }
+                 ]
     },
   ];
 }
+
+
+// function definedQuestions(users) {
+//   return [
+//     {
+//       author: user[0],
+//       body: "body of question 1"
+//     },
+//        {
+//       author: user[1],
+//       body: "body of question 2"
+//     },
+//        {
+//       author: user[2],
+//       body: "body of question 3"
+//     }
+//   ];
+// }
+
+
+

@@ -4,7 +4,7 @@ module.exports = {
   welcome: welcome,
   team:    team,
   firstTimeLogin: firstTimeLogin,
-
+  test: test
 };
 
 function welcome(req, res, next) {
@@ -17,4 +17,7 @@ function team(req, res, next) {
 
 function firstTimeLogin(req,res,next) {
   res.render('pages/first-time-login', {user: req.user, page: "first-time-login"});
+
+function test(req, res, next) {
+  res.render('pages/test', {user: req.user, page: "team"});
 }
