@@ -2,9 +2,10 @@ var Classroom = require('../models/classroom');
 
 module.exports = {
   welcome: welcome,
-  team:    team,
+  team: team,
   firstTimeLogin: firstTimeLogin,
-  test: test
+  test: test,
+  edituser: edituser
 };
 
 function welcome(req, res, next) {
@@ -21,4 +22,8 @@ function firstTimeLogin(req,res,next) {
 
 function test(req, res, next) {
   res.render('pages/test', {user: req.user, page: "team"});
+}
+
+function edituser(req, res, next) {
+  res.render('pages/edituser', {user: req.user, page: ""});
 }

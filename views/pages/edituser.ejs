@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('../partials/head') %>
+
+</head>
+<body>
+  <%- include('../partials/header', {subHeading: 'Welcome'}) %>
+
+<h1>testing grounds</h1>
+  <div class="container">
+     <form action="submit" id="userform">
+       First Name: <input type="text" name="first_name" value="<%= user.firstName %>" id="edit-fn"><br>
+       Last Name: <input type="text" name="last_name" value="<%= user.lastName %>" id="edit-ln"><br>
+       Email: <input type="text" name="email" value="<%= user.email %>" id="edit-email"><br>
+       Institution: <input type="text" name="institution" id="edit-institution"><br>
+       Location: <input type="text" name="location" id="edit-location"><br>
+       Sign Up for a Class: <input type="text" name="signUpCode" id="edit-signupcode"><br>
+       <input type="submit" id="submit-edit">
+     </form>
+    <section id="questionList"></section>
+  </div>
+  <%- include('../partials/scripts') %>
+  <script>
+    var userId = '';
+    <% if (user) { %>
+      userId = '<%= user.id %>';
+    <% } %>
+  </script>
+</body>
+</html>
