@@ -13,10 +13,16 @@ function editUser(user) {
 
 // jQuery
 $(function() {
+  // if the newUser is true then show
+  // a modal to edit profile info pulled from LinkedIn
+  if (newUser) {
+    $(window).load(function() {
+      $('#myModal').modal('show');
+    });
+  }
 
   $('#submit-edit').on('click', function(evt) {
     evt.preventDefault();
-
     var user = {
       firstName:   $("#edit-fn").val(),
       lastName:    $("#edit-ln").val(),
@@ -26,6 +32,7 @@ $(function() {
     };
 
     editUser(user);
+  }).then(function() {
+      $('#myModal').modal('dismiss');
   });
-
-})
+});
