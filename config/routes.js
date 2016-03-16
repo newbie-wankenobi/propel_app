@@ -12,6 +12,7 @@ router.get('/', function(req, res) {
 });
 router.get('/welcome', pagesController.welcome);
 router.get('/team',    pagesController.team);
+router.get('/test', pagesController.test);
 
 // AUTH ROUTES (SIGN IN, LOG IN, LOG OUT) ******************************
 router.get('/auth/linkedin', passport.authenticate('linkedin',
