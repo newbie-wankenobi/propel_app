@@ -17,6 +17,7 @@ router.get('/team',    pagesController.team);
 router.get('/test',    pagesController.test);
 router.get('/first_time_login',    pagesController.loginTest);
 router.get('/edituser',    pagesController.edituser);
+router.get('/classroom', pagesController.classroom);
 
 
 // AUTH ROUTES (SIGN IN, LOG IN, LOG OUT) ******************************
@@ -27,7 +28,7 @@ router.get('/auth/linkedin', passport.authenticate('linkedin',
 );
 
 router.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/classroom.html',
+  successRedirect: '/classroom',
   failureRedirect: '/'
 }));
 
