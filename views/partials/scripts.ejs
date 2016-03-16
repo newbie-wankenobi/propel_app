@@ -1,4 +1,11 @@
-
+<script>
+    console.log("user id loaded")
+    var userId = '';
+    <% if (user) { %>
+      userId = '<%= user.id %>';
+    <% } %>
+</script>
 <script src='/js/main.js'></script>
 <script src='/js/spike_new_classroom.js'></script>
 <script src='/js/spike_questions_render.js'></script>
+<script src='/js/spike_create_question.js'></script>
