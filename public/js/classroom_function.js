@@ -19,11 +19,6 @@ function renderClasses() {
       var $classTemp = $classroomInfoTemp(classroom);
       console.log($classTemp);
       $('#classroom-list').append($classTemp);
-      // $classTemp.on('click', function(){
-      //   console.log('classroom selected');
-      //   var classId = this.attr('id');
-      //   indexingQuestions();
-      // })
     });
   })
     .then(function() {
@@ -44,40 +39,37 @@ $( document ).ready( function() {
 
 //rendering question according to each classroom
 var $questionListEl; //<section> of where the question get posted
-var renderQuestions = _.template(`
-      <article id="<%= _id %>" class="">
-        <div class="question-title">
-          <a href="/users/<%= _id %>"><h3><%= title %></h3></a>
-          <h6> Asked by<a href="/users/<%= author %>"> %%= author fullname %%, <%= createdAt %></h6></a>
-        </div>
-        <p><%= body %></p>
-        <!-- <br> -->
-        <!-- <button>upvote</button> VoteCount <button>downvote</button> -->
-        <!-- <br> -->
-        <!-- <button>delete this question (only delete user own question)</button> -->
-      </article>
+var templateQuestions = _.template(`
+      <% questions.forEach(function(q) { %>
+
+        <article id="<%= q._id %>" class="">
+          <div class="question-title">
+            <a href="/users/<%= q._id %>"><h3><%= q.title %></h3></a>
+            <h6> Asked by<a href="/users/<%= q.author %>"> %%= q.author fullname %%, <%= q.createdAt %></h6></a>
+          </div>
+          <p><%= q.body %></p>
+          <!-- <br> -->
+          <!-- <button>upvote</button> VoteCount <button>downvote</button> -->
+          <!-- <br> -->
+          <!-- <button>delete this question (only delete user own question)</button> -->
+        </article>
+
+      <% }) %>
     `);
 
 //using put info in template and append to page
-function postQuestions(question){
-  var questionComponent  = renderQuestions(question);
-  var $questionComponent = $(questionComponent);
+function renderQuestions(classroom){
       $questionListEl    = $('#question-list');
-      $questionListEl.append($questionComponent);
-}
+      $questionListEl.html(templateQuestions(classroom));
 
- //$questionList = <section> of where the question get posted}
+}
 
 function indexingQuestions(classId) {
   $.ajax({
     method: "GET",
     url: "api/classrooms/" + classId,
-  }).then(function(classroom){
-    console.log("RENDERING Classrooms", classroom);
-    $questionListEl    = $('#question-list');
-    $questionListEl.empty();
-    classroom.questions.forEach(function(question){
-      postQuestions(question);
-    });
   })
+  .then(function(classroom){
+    renderQuestions(classroom);
+  });
 }
