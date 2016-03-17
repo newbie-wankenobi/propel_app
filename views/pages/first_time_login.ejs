@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <$- include('../partials/head') $>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        Welcome, <$= user.firstName $>
+      </div>
+    </div>
+  </div>
+<!-- <div class=active if user.newUser >modal</div> -->
+  <div class="linked-in-prefilled-info">
+    <form action="submit" id="userform">
+      First Name: <input type="text" name="first_name" value="<$= user.firstName $>" id="edit-fn"><br>
+      Last Name: <input type="text" name="last_name" value="<$= user.lastName $>" id="edit-ln"><br>
+      Email: <input type="text" name="email" value="<$= user.email $>" id="edit-email"><br>
+      Institution: <input type="text" name="institution" value="<$= user.institution $>" id="edit-institution"><br>
+      Location: <input type="text" name="location" placeholder="Los Angeles" id="edit-location"><br>
+      <input type="submit" id="submit-edit">
+    </form>
+  </div>
+
+    <$ if (user.type === "instructor") { $>
+  <div class= "new-classroom-form">
+    <form action="submit" id="new-classroom-form">
+      Type: <select id="new-classroom-type">
+              <option value="course">courses</option>
+              <option value="subject-thread">subject</option>
+              <option value="industry-thread">industry</option>
+            </select> <br>
+      Name: <input type="text" name="name" placeholder="Sociology 101" id="new-classroom-name"><br>
+      Add Admin: <input type="text" name="admins" placeholder="" id="new-classroom-admins"><br>
+      Description: <textarea type="text" placeholder="Please enter a description about your class..." id="new-classroom-description"></textarea>
+      <input type="submit" id="new-classroom-submit">
+    </form>
+  </div>
+   <$ } else { $>
+      <div class="input-signup-code">
+        <p>Please enter your signup code:</p>
+        <form action="submit" id="new-classroom-form"> <br>
+           <p> Code: <input type="text" placeholder="012345" id="signup-code"><br></p>
+        <input type="submit" id="new-classroom-form">
+        </form>
+      </div>
+   <$ } $>
+
+<!-- TODO: on submit change user.newUser to false -->
+
+  <$- include('../partials/scripts') $>
+  <script>
+    var userId = '';
+    <$ if (user) { $>
+      userId = '<$= user.id $>';
+    <$ } $>
+  </script>
+</body>
+</html>

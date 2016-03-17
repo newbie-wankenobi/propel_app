@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%- include('../partials/head') %>
+  <$- include('../partials/head') $>
 </head>
 <body>
-  <%- include('../partials/header', {subHeading: 'Welcome'}) %>
+  <$- include('../partials/header', {subHeading: 'Welcome'}) $>
 
-  <main>
-    <ul>
-      <li><a href="/users">Welcome to the test site</a></li>
-    </ul>
-  </main>
-
-  <div id="classroom-list"></div>
+  <div class="container">
+      <h1>Testing Facility</h1>
+      <div id="questionList"></div>
 
 
 
 
-  <%- include('../partials/scripts') %>
+  </div>
+  <$- include('../partials/scripts') $>
 </body>
 </html>
